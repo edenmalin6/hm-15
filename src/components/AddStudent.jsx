@@ -14,6 +14,14 @@ export const AddStudent = ({ setStudents }) => {
 
     databaseStudents.push({ name, age, major, university, averageGrade });
     setStudents([...databaseStudents]);
+
+    // Ik its rly ugly that way but im tired
+    setName("")
+    setAge("")
+    setMajor("")
+    setUniversity("")
+    setAverageGrade("")
+
   };
 
   return (

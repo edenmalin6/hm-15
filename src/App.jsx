@@ -1,4 +1,3 @@
-import "./style.css";
 import { Table } from "./components/Dashboard";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -14,7 +13,7 @@ function App() {
       <Header />
       <h2>Student List</h2>
       <AddStudent setStudents={setStudents} />
-      <Table students={students} />
+      <Table students={students} setStudents={setStudents} />
       <Footer />
     </div>
   );

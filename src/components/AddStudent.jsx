@@ -1,20 +1,20 @@
 import databaseStudents from "../data/students";
 import React, { useState } from "react";
 
-export  const  AddStudent = ({setStudents}) => {
-  
+export const AddStudent = ({ setStudents }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [major, setMajor] = useState("");
   const [university, setUniversity] = useState("");
   const [averageGrade, setAverageGrade] = useState("");
 
-  function handleSubmit(e) {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     databaseStudents.push({ name, age, major, university, averageGrade });
     setStudents([...databaseStudents]);
-  }
+  };
 
   return (
     <div className="form-container">
@@ -22,6 +22,7 @@ export  const  AddStudent = ({setStudents}) => {
         <label htmlFor="name">Name: </label>
         <input
           id="name"
+          required= "required"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
@@ -29,6 +30,7 @@ export  const  AddStudent = ({setStudents}) => {
         <label htmlFor="age">Age: </label>
         <input
           id="age"
+          required= "required"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           type="number"
@@ -36,6 +38,7 @@ export  const  AddStudent = ({setStudents}) => {
         <label htmlFor="major">Major: </label>
         <input
           id="major"
+          required= "required"
           value={major}
           onChange={(e) => setMajor(e.target.value)}
           type="text"
@@ -43,6 +46,7 @@ export  const  AddStudent = ({setStudents}) => {
         <label htmlFor="university">University: </label>
         <input
           id="university"
+          required= "required"
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
           type="text"
@@ -50,12 +54,15 @@ export  const  AddStudent = ({setStudents}) => {
         <label htmlFor="averageGrade">Average Grade: </label>
         <input
           id="averageGrade"
+          required= "required"
           value={averageGrade}
           onChange={(e) => setAverageGrade(e.target.value)}
           type="number"
         ></input>
-        <button type="submit">Add Student</button>
+        <button type="submit" className="btn-add">
+          Add Student
+        </button>
       </form>
     </div>
   );
-}
+};

@@ -1,31 +1,51 @@
-import React from "react";
-import "../components/Dashboard.css"
+import React, { useState, Fragment } from "react";
+import ReadOnlyRow from "./ReadOnlyRow";
+import { EditRow } from "./EditRow";
 
-export const Table = ({students}) => {
+export const Table = ({ students, setStudents }) => {
+  const [editId, setEditId] = useState(null);
+
+  const handleRemoveClick = (e, studentId) => {
+    e.preventDefault();
+    const updatedStudents = students.filter(
+      (student) => student.id !== studentId
+    );
+    setStudents(updatedStudents);
+  };
+
+  const handleEditClick = (e, studentId) => {
+    e.preventDefault();
+    setEditId(studentId);
+  };
   return (
     <div className="Table>">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Major</th>
-            <th>University</th>
-            <th>Average Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student, index) => (
-            <tr key={index} className="tr">
-              <td>{student.name}</td>
-              <td>{student.age}</td>
-              <td>{student.major}</td>
-              <td>{student.university}</td>
-              <td>{student.averageGrade}</td>
+      <form>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Major</th>
+              <th>University</th>
+              <th>Average Grade</th>
+              <th className="actions">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((student, key) =>
+              editId === student.id ? ( //editId - when null, edit and remove actions are available. when editId is equal to student.id save anf cancel actions are available.
+                <EditRow setEditId={setEditId} student={student} />
+              ) : (
+                <ReadOnlyRow
+                  student={student}
+                  handleRemoveClick={handleRemoveClick}
+                  handleEditClick={handleEditClick}
+                />
+              )
+            )}
+          </tbody>
+        </table>
+      </form>
     </div>
   );
 };

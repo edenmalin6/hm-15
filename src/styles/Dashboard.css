@@ -1,0 +1,49 @@
+
+table,
+td,
+th {
+  border: 1px solid black;
+  text-align: left;
+}
+.form-container {
+  margin-bottom: 20px;
+}
+input {
+  padding: 5px;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 15px;
+}
+.tr:hover {
+  background-color: #f4f3f3;
+}
+thead {
+  background-color: rgb(0, 195, 255);
+  color: white;
+}
+button {
+  background-color: rgb(18, 98, 211);
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 7px;
+  margin-right: 5px;
+  margin-left: 15px;
+  padding: 5px 15px;
+  /* width: 100%;
+  margin: 5px; */
+}
+button:hover{
+  background-color: rgba(4, 137, 199, 0.95);
+}

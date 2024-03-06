@@ -1,7 +1,7 @@
 import { useState } from "react";
 import databaseStudents from "../data/students";
 
-export const EditRow = ({ setEditId, student }) => {
+export const EditRow = ({ setEditId, student, setStudents }) => {
   const [updatedName, setUpdatedName] = useState(student.name);
   const [updatedAge, setUpdatedAge] = useState(student.age);
   const [updatedMajor, setUpdatedMajor] = useState(student.major);
@@ -17,12 +17,15 @@ export const EditRow = ({ setEditId, student }) => {
       (findStudent) => findStudent.id === student.id
     );
     databaseStudents[studentIndex] = {
+      id: student.id,
       name: updatedName,
       age: updatedAge,
       major: updatedMajor,
       university: updatedUniversity,
       averageGrade: updatedAverageGrade,
     };
+    setStudents([...databaseStudents])
+    
    handleCancel()
   };
   const handleCancel = () => {

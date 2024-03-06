@@ -1,5 +1,6 @@
 import databaseStudents from "../data/students";
 import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export const AddStudent = ({ setStudents }) => {
   const [name, setName] = useState("");
@@ -11,11 +12,11 @@ export const AddStudent = ({ setStudents }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    databaseStudents.push({ name, age, major, university, averageGrade });
+    const id = uuidv4()
+    databaseStudents.push({id, name, age, major, university, averageGrade });
     setStudents([...databaseStudents]);
+    // setStudents((prevState) => [...prevState, { name, age, major, university, averageGrade }]) -- without updating the databaseStudents
 
-    // Ik its rly ugly that way but im tired
     setName("")
     setAge("")
     setMajor("")
@@ -30,7 +31,7 @@ export const AddStudent = ({ setStudents }) => {
         <label htmlFor="name">Name: </label>
         <input
           id="name"
-          required= "required"
+          // required= "required"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
@@ -38,7 +39,7 @@ export const AddStudent = ({ setStudents }) => {
         <label htmlFor="age">Age: </label>
         <input
           id="age"
-          required= "required"
+          // required= "required"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           type="number"
@@ -46,7 +47,7 @@ export const AddStudent = ({ setStudents }) => {
         <label htmlFor="major">Major: </label>
         <input
           id="major"
-          required= "required"
+          // required= "required"
           value={major}
           onChange={(e) => setMajor(e.target.value)}
           type="text"
@@ -54,7 +55,7 @@ export const AddStudent = ({ setStudents }) => {
         <label htmlFor="university">University: </label>
         <input
           id="university"
-          required= "required"
+          // required= "required"
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
           type="text"
@@ -62,7 +63,7 @@ export const AddStudent = ({ setStudents }) => {
         <label htmlFor="averageGrade">Average Grade: </label>
         <input
           id="averageGrade"
-          required= "required"
+          // required= "required"
           value={averageGrade}
           onChange={(e) => setAverageGrade(e.target.value)}
           type="number"

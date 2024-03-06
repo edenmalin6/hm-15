@@ -12,18 +12,18 @@ const ReadOnlyRow = ({
       <td>{student.major}</td>
       <td>{student.university}</td>
       <td>{student.averageGrade}</td>
-      <td>
-      <button
-        className="btn-remove"
-        onClick={(e) => handleRemoveClick(e, student.id)}
-      >
-        Remove
-      </button>
+      <td>     
       <button
         className="btn-edit"
         onClick={(e) => handleEditClick(e, student.id)}
       >
         Edit
+      </button>
+      <button
+        className="btn-remove"
+        onClick={() => handleRemoveClick(student.id)}
+      >
+        Remove
       </button>
       </td>
       

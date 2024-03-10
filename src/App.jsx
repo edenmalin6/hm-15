@@ -38,7 +38,7 @@ function App() {
           <LoginForm login={login} setShowRegisterPage={setShowRegisterPage} />
         )
       ) : (
-        <StudentsApp setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
+        <StudentsApp setLoggedInUser={setLoggedInUser}/>
       )}
     </div>
   );

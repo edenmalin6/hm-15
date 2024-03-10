@@ -18,7 +18,7 @@ export const StudentsApp = ({setLoggedInUser}) => {
    }
   return (
     <div>
-      <Header handleLogout={handleLogout} loggedInUser={loggedInUser}/>
+      <Header handleLogout={handleLogout}/>
       <h2>Student List</h2>
       <AddStudent setStudents={setStudents} />
       <Table students={students} setStudents={setStudents} />

@@ -1,8 +1,26 @@
 * {
-    box-sizing: border-box;
-  }
-  body {
-    max-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-  }
+  box-sizing: border-box;
+}
+body {
+  max-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  transition: background-color 250ms ease-in-out;
+}
+
+:root {
+  --background-color: rgb(244, 240, 240);
+  --border: black;
+  --primary-text-color: black;
+  --secondary-text-color: rgb(244, 240, 240);
+  --toggle-bg: #f0eb9d;
+  --toggle-fg: #ffd800;
+}
+[data-theme="dark"] {
+  --background-color: rgba(35, 34, 34, 0.677);
+  --border: rgb(244, 240, 240);
+  --primary-text-color: rgb(244, 240, 240);
+  --secondary-text-color: black;
+  --toggle-bg: #12204c;
+  --toggle-fg: rgb(47, 106, 138);
+}

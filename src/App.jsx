@@ -1,20 +1,45 @@
-import { Table } from "./components/Dashboard";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { AddStudent } from "./components/AddStudent";
-import databaseStudents from "./data/students";
+import { LoginForm } from "./components/LoginForm";
+import { RegisterForm } from "./components/RegisterForm";
+import { StudentsApp } from "./components/StudentsApp";
+import { Toggle } from "./components/Toggle";
+import { storageService } from "./services/storageService";
+import { userService } from "./services/userService";
 import { useState } from "react";
 
 function App() {
-  const [students, setStudents] = useState(databaseStudents);
+  const [isDark, setIsDark] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [showRegisterPage, setShowRegisterPage] = useState(false);
+
+  const register = (email, username, password) => {
+    userService.createUser(email, username, password);
+    setShowRegisterPage(false);
+  };
+  const login = (username, password) => {
+    const user = userService.login(username, password);
+    if (!user && user.password!== password) {
+      alert("User Not Found. Please Make Sure You Already Have An Account.");
+      setShowRegisterPage(true);
+      return;
+    }
+    setLoggedInUser(user);
+  };
 
   return (
-    <div className="App">
-      <Header />
-      <h2>Student List</h2>
-      <AddStudent setStudents={setStudents} />
-      <Table students={students} setStudents={setStudents} />
-      <Footer />
+    <div className="App" data-theme={isDark ? "dark" : "light"}>
+      {/* <Toggle isChecked={isDark} handleChange={() => setIsDark(isDark)} /> */}
+      {!loggedInUser ? (
+        showRegisterPage ? (
+          <RegisterForm
+            register={register}
+            setShowRegisterPage={setShowRegisterPage}
+          />
+        ) : (
+          <LoginForm login={login} setShowRegisterPage={setShowRegisterPage} />
+        )
+      ) : (
+        <StudentsApp setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />
+      )}
     </div>
   );
 }

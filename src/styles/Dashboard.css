@@ -2,7 +2,7 @@
 table,
 td,
 th {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   text-align: left;
 }
 .form-container {
@@ -41,8 +41,6 @@ button {
   margin-right: 5px;
   margin-left: 15px;
   padding: 5px 15px;
-  /* width: 100%;
-  margin: 5px; */
 }
 button:hover{
   background-color: rgba(4, 137, 199, 0.95);

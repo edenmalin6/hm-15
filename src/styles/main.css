@@ -1,5 +1,7 @@
 @import "./global.css";
-@import "./Dashboard.css";
+@import "./Toggle.css";
+@import "./Login.css";
+@import "./Register.css";
 @import  "./Header.css";
 @import "./Dashboard.css";
 @import "./Footer.css";

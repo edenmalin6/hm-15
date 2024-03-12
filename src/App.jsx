@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = storageService.getLoggedInUser();
-    console.log(loggedInUser);
     if (loggedInUser) {
       setLoggedInUser(loggedInUser);
     }

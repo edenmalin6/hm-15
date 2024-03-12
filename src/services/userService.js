@@ -14,10 +14,10 @@ export const createUser = (email, username, password) => {
   const usersList = storageService.getUsers();
 
   const matchingUsername = usersList.findOne((user) => user.username === newUser.username);
-  if(matchingUsername) throw Error ("Username already taken. ")
+  if(matchingUsername) throw Error ("Username already taken.")
 
   const matchingEmail = usersList.findOne((user) => user.email === newUser.email);
-  if(matchingEmail) throw Error ("Email already taken. ")
+  if(matchingEmail) throw Error ("User with that email already exists.")
 
   storageService.saveUsers([...usersList, newUser]);
 };
@@ -36,6 +36,5 @@ export const login = (username, password) => {
 
 export const logout = () => {
   storageService.clearAll();
-  console.log("dsfsfs");
 };
 export const userService = { createUser, login, logout };

@@ -17,6 +17,6 @@ export const storageService = {
     localStorage.setItem(LOGGED_IN_USER,JSON.stringify(user) )
   },
   clearAll(){
-    sessionStorage.removeItem(LOGGED_IN_USER)
+    localStorage.removeItem(LOGGED_IN_USER)
   }
 };

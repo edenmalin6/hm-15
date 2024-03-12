@@ -27,8 +27,8 @@ td {
 .tr:hover {
   background-color: #f4f3f3;
 }
-thead {
-  background-color: rgb(0, 195, 255);
+.admin-thead {
+  background-color: rgb(169, 17, 224);
   color: white;
 }
 button {

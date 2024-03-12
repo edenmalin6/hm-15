@@ -1,34 +1,41 @@
 import { v4 as uuidv4 } from "uuid";
 import { storageService } from "./storageService";
 
-export const createUser = (email, username, password, avatar = "") => {
+export const createUser = (email, username, password) => {
+  const id = uuidv4();
   const newUser = {
-    id: uuidv4(),
+    id,
     email,
     username,
     password,
-    avatar,
+    avatar: "http://robohash.org/" + id,
     isAdmin: false,
   };
   const usersList = storageService.getUsers();
+
+  const matchingUsername = usersList.findOne((user) => user.username === newUser.username);
+  if(matchingUsername) throw Error ("Username already taken. ")
+
+  const matchingEmail = usersList.findOne((user) => user.email === newUser.email);
+  if(matchingEmail) throw Error ("Email already taken. ")
+
   storageService.saveUsers([...usersList, newUser]);
 };
 
 export const login = (username, password) => {
   const users = storageService.getUsers();
-  const foundedUser = users.find(
-    (user) => user.username === username 
-  );
-    if (!foundedUser) return null;
-    if (foundedUser.password !== password) {
-      alert("Invalid Password. Please Make Sure You Entered The Right Password.");
-      return null;
-    }
-  storageService.saveLoggedInUser(foundedUser);
-  return foundedUser;
+  const foundUser = users.find((user) => user.username === username);
+  console.log(username, password);
+
+  if (!foundUser) throw Error("User not found.");
+  if (foundUser.password !== password) throw Error("Invalid password.");
+
+  storageService.saveLoggedInUser(foundUser);
+  return foundUser;
 };
 
 export const logout = () => {
   storageService.clearAll();
+  console.log("dsfsfs");
 };
 export const userService = { createUser, login, logout };

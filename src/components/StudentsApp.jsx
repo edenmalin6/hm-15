@@ -6,20 +6,22 @@ import { AddStudent } from "./AddStudent";
 import databaseStudents from "../data/students";
 import { logout } from "../services/userService";
 import { useState } from "react";
+import { storageService } from "../services/storageService";
 
-export const StudentsApp = ({setLoggedInUser}) => {
+export const StudentsApp = ({setLoggedInUser, loggedInUser}) => {
   const [students, setStudents] = useState(databaseStudents);
-
+  // const[showAdminData, setShowAdminData] = useState(loggedInUser.isAdmin)
 
   const handleLogout = () =>{
     logout()
     setLoggedInUser(null)
-    console.log(setLoggedInUser);
+    
    }
   return (
     <div>
       <Header handleLogout={handleLogout}/>
       <h2>Student List</h2>
+      <img src={storageService.getLoggedInUser().avatar}></img>
       <AddStudent setStudents={setStudents} />
       <Table students={students} setStudents={setStudents} />
       <Footer />

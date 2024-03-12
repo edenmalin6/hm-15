@@ -7,10 +7,8 @@ export const RegisterForm = ({ register, setShowRegisterPage }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // if (!username.trim() || !password.trim() || !email.trim()) return
+    if (!username.trim() || !password.trim() || !email.trim()) return;
     register(email, username, password);
-
-    console.log(email, username, password);
   };
 
   return (
@@ -45,8 +43,8 @@ export const RegisterForm = ({ register, setShowRegisterPage }) => {
         </div>
       </form>
       <div>
-      <span>Already have an account? </span>
-      <button onClick={() => setShowRegisterPage(false)}>Sign In</button>
+        <span>Already have an account? </span>
+        <button onClick={() => setShowRegisterPage(false)}>Sign In</button>
       </div>
     </section>
   );

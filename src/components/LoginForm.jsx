@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
- export const LoginForm = ({ login, setShowRegisterPage }) => {
+export const LoginForm = ({ login, setShowRegisterPage, error,setError }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -8,12 +8,11 @@ import React, { useState } from "react";
     e.preventDefault();
 
     login(username, password);
-    console.log( username, password);
-
   };
   return (
     <section className="login-container">
       <h2>Login</h2>
+      {error}
       <form onSubmit={handleLogin}>
         <div className="login-form">
           <label htmlFor="username">Username</label>
@@ -36,9 +35,14 @@ import React, { useState } from "react";
         </div>
       </form>
       <span>Don't have an account yet? </span>
-      <button onClick={()=> setShowRegisterPage(true)}>Sign Up</button>
+      <button
+        onClick={() => {
+          setError("");
+          setShowRegisterPage(true);
+        }}
+      >
+        Sign Up
+      </button>
     </section>
   );
 };
-
-

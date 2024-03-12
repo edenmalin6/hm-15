@@ -25,8 +25,7 @@ const ReadOnlyRow = ({
       >
         Remove
       </button>
-      </td>
-      
+      </td>      
     </tr>
   );
 };

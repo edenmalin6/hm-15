@@ -4,23 +4,39 @@ import { StudentsApp } from "./components/StudentsApp";
 import { Toggle } from "./components/Toggle";
 import { storageService } from "./services/storageService";
 import { userService } from "./services/userService";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [showRegisterPage, setShowRegisterPage] = useState(false);
 
+  useEffect(() => {
+    const loggedInUser = storageService.getLoggedInUser();
+    console.log(loggedInUser);
+    if (loggedInUser) {
+      setLoggedInUser(loggedInUser);
+    }
+  }, []);
+
   const register = (email, username, password) => {
-    userService.createUser(email, username, password);
+    try {
+      userService.createUser(email, username, password);
+    } catch (e) {
+      alert(e.message)
+      throw e
+    }
     setShowRegisterPage(false);
   };
+  const [error, setError] = useState("");
+
   const login = (username, password) => {
-    const user = userService.login(username, password);
-    if (!user && user.password!== password) {
-      alert("User Not Found. Please Make Sure You Already Have An Account.");
-      setShowRegisterPage(true);
-      return;
+    let user;
+    try {
+      user = userService.login(username, password);
+    } catch (e) {
+      setError(e.message);
+      throw e;
     }
     setLoggedInUser(user);
   };
@@ -35,10 +51,18 @@ function App() {
             setShowRegisterPage={setShowRegisterPage}
           />
         ) : (
-          <LoginForm login={login} setShowRegisterPage={setShowRegisterPage} />
+          <LoginForm
+            login={login}
+            setShowRegisterPage={setShowRegisterPage}
+            error={error}
+            setError={setError}
+          />
         )
       ) : (
-        <StudentsApp setLoggedInUser={setLoggedInUser}/>
+        <StudentsApp
+          setLoggedInUser={setLoggedInUser}
+          loggedInUser={loggedInUser}
+        />
       )}
     </div>
   );

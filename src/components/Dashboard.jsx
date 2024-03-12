@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import databaseStudents from "../data/students";
 import ReadOnlyRow from "./ReadOnlyRow";
 import { EditRow } from "./EditRow";
+import { Admin } from "./Admin";
+import { storageService } from "../services/storageService";
+import { Footer } from "./Footer";
 
 export const Table = ({ students, setStudents }) => {
   const [editId, setEditId] = useState(null);
 
-  const handleRemoveClick = (studentId) => { 
+  const handleRemoveClick = (studentId) => {
     const studentIndex = databaseStudents.findIndex(
       (student) => student.id === studentId
     );
@@ -19,7 +22,7 @@ export const Table = ({ students, setStudents }) => {
     setEditId(studentId);
   };
   return (
-    <div className="Table>">
+    <div className="content-box">
       <table>
         <thead>
           <tr>
@@ -37,7 +40,7 @@ export const Table = ({ students, setStudents }) => {
               <EditRow
                 setEditId={setEditId}
                 student={student}
-                setStudents={setStudents}              
+                setStudents={setStudents}
               />
             ) : (
               <ReadOnlyRow
@@ -49,6 +52,9 @@ export const Table = ({ students, setStudents }) => {
           )}
         </tbody>
       </table>
+      <br></br>
+      {storageService.getLoggedInUser().isAdmin && <Admin/>} 
     </div>
   );
-};
+}; 
+// // And(&&) returns the last checked value. logged user is truthy and also 

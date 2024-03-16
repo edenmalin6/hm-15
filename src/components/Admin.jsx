@@ -19,7 +19,7 @@ export const Admin = () => {
   return (
     <div className="admin-table>">
       <table>
-        <thead className="admin-thead">
+        <thead>
           <tr>
             <th>User ID</th>
             <th>Email</th>

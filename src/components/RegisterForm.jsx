@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const RegisterForm = ({ register, setShowRegisterPage }) => {
+export const RegisterForm = ({ register, setShowRegisterPage,  error, setError }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,7 @@ export const RegisterForm = ({ register, setShowRegisterPage }) => {
   return (
     <section className="register-container">
       <h2>Register</h2>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleRegister}>
         <div className="register-form">
           <label htmlFor="email">Email</label>
@@ -44,7 +45,7 @@ export const RegisterForm = ({ register, setShowRegisterPage }) => {
       </form>
       <div>
         <span>Already have an account? </span>
-        <button onClick={() => setShowRegisterPage(false)}>Sign In</button>
+        <button onClick={() => setShowRegisterPage(false)+ setError("")} className="go-to-sign">Sign In</button>
       </div>
     </section>
   );

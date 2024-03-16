@@ -6,7 +6,7 @@ const ReadOnlyRow = ({
   handleEditClick,
 }) => {
   return (
-    <tr key={student.id} className="tr">
+    <tr key={student.id}>
       <td>{student.name}</td>
       <td>{student.age}</td>
       <td>{student.major}</td>

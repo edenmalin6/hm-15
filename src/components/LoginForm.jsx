@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const LoginForm = ({ login, setShowRegisterPage, error,setError }) => {
+export const LoginForm = ({ login, setShowRegisterPage, error, setError }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +12,7 @@ export const LoginForm = ({ login, setShowRegisterPage, error,setError }) => {
   return (
     <section className="login-container">
       <h2>Login</h2>
-      {error}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="login-form">
           <label htmlFor="username">Username</label>
@@ -34,8 +34,9 @@ export const LoginForm = ({ login, setShowRegisterPage, error,setError }) => {
           </button>
         </div>
       </form>
-      <span>Don't have an account yet? </span>
+      <span className="text">Don't have an account yet?</span>
       <button
+        className="go-to-sign"
         onClick={() => {
           setError("");
           setShowRegisterPage(true);

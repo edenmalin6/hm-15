@@ -1,8 +1,8 @@
 @import "./global.css";
-@import "./Toggle.css";
 @import "./Login.css";
 @import "./Register.css";
 @import  "./Header.css";
+@import "./EditRow.css";
 @import "./Dashboard.css";
 @import "./Admin.css";
-@import "./Footer.css";
+@import "./Footer.css"

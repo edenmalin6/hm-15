@@ -29,41 +29,41 @@ export const AddStudent = ({ setStudents }) => {
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name: </label>
-        <input
+        <input 
           id="name"
-          // required= "required"
+          required= "required"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
         ></input>
         <label htmlFor="age">Age: </label>
-        <input
+        <input 
           id="age"
-          // required= "required"
+          required= "required"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           type="number"
         ></input>
         <label htmlFor="major">Major: </label>
-        <input
+        <input 
           id="major"
-          // required= "required"
+          required= "required"
           value={major}
           onChange={(e) => setMajor(e.target.value)}
           type="text"
         ></input>
         <label htmlFor="university">University: </label>
-        <input
+        <input 
           id="university"
-          // required= "required"
+          required= "required"
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
           type="text"
         ></input>
         <label htmlFor="averageGrade">Average Grade: </label>
-        <input
+        <input 
           id="averageGrade"
-          // required= "required"
+          required= "required"
           value={averageGrade}
           onChange={(e) => setAverageGrade(e.target.value)}
           type="number"

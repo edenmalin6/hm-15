@@ -8,9 +8,8 @@ import { logout } from "../services/userService";
 import { useState } from "react";
 import { storageService } from "../services/storageService";
 
-export const StudentsApp = ({setLoggedInUser, loggedInUser}) => {
+export const StudentsApp = ({setLoggedInUser}) => {
   const [students, setStudents] = useState(databaseStudents);
-  // const[showAdminData, setShowAdminData] = useState(loggedInUser.isAdmin)
 
   const handleLogout = () =>{
     logout()

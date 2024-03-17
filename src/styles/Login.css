@@ -14,7 +14,7 @@
   top: 40%;
   left: 50%;
   border-radius: 10px;
-  box-shadow: 0 0 40px rgb(79, 83, 115);
+  /* box-shadow: 0 0 40px rgb(39, 51, 61); */
   padding: 50px 35px;
 }
 .login-container label {
@@ -50,9 +50,6 @@
 .btn-login:hover {
   background-color: rgb(21, 58, 162);
 }
-.login-container span{
-  /* align-items: center; */
-}
 .go-to-sign {
   background: none;
 }
@@ -60,6 +57,6 @@
   background: none;
 }
 .error{
-color: rgb(225, 1, 1);
+color: white;
 font-weight: bold;
 }

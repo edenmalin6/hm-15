@@ -1,23 +1,16 @@
-.footer-normal {
+html{
+  height:100%
+}
+.footer-container {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: rgb(41, 40, 40);
-  padding: 20px;
+  background-color: rgb(36, 33, 33);
+  padding: 30px;
   color: white;
   position: absolute;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  /* bottom:0; */
+  bottom:0;
   width: 100%;
 }
-.footer-admin {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: rgb(41, 40, 40);
-  padding: 20px;
-  color: white;
-  position: absolute;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  width: 100%;
-}
+

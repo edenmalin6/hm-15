@@ -1,70 +1,26 @@
-import { LoginForm } from "./components/LoginForm";
-import { RegisterForm } from "./components/RegisterForm";
-import { StudentsApp } from "./components/StudentsApp";
-import { storageService } from "./services/storageService";
-import { userService } from "./services/userService";
-import { useState, useEffect } from "react";
-
+import { Route, Routes } from "react-router-dom";
+import {HomePage} from "./pages/HomePage"
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { StudentsPage } from "./pages/StudentsPage";
+import { AdminPage } from "./pages/AdminPage";
+import { NotFound } from "./pages/NotFound";
+import { AuthProvider } from "./context/AuthProvider";
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  const [showRegisterPage, setShowRegisterPage] = useState(false);
-
-  useEffect(() => {
-    const loggedInUser = storageService.getLoggedInUser();
-    if (loggedInUser) {
-      setLoggedInUser(loggedInUser);
-    }
-  }, []);
-
-  const [error, setError] = useState("");
-
-  const register = (email, username, password) => {
-    try {
-      userService.createUser(email, username, password);
-    } catch (e) {
-      setError(e.message)
-      throw e
-    }
-    setShowRegisterPage(false);
-  };
-  
-  const login = (username, password) => {
-    let user;
-    try {
-      user = userService.login(username, password);
-    } catch (e) {
-      console.log(e.message);
-      setError(e.message);
-      throw e;
-      
-    }
-    setLoggedInUser(user);
-  };
-
+ 
   return (
-    <div className="App">
-      {!loggedInUser ? (
-        showRegisterPage ? (
-          <RegisterForm
-            register={register}
-            setShowRegisterPage={setShowRegisterPage}
-            error={error}
-            setError={setError}
-          />
-        ) : (
-          <LoginForm
-            login={login}
-            setShowRegisterPage={setShowRegisterPage}
-            error={error}
-            setError={setError}
-          />
-        )
-      ) : (
-        <StudentsApp
-          setLoggedInUser={setLoggedInUser}
-        />
-      )}
-    </div>
+   <main>
+    <AuthProvider >
+    <Routes>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/login" element={<LoginPage/>} />
+      <Route path="/register" element={<RegisterPage/>}/>
+      <Route path="/students" element={<StudentsPage/>}/> 
+      <Route path="students/:isAdmin= " element={<AdminPage/>}/>
+      <Route path="*" element={<NotFound/>}/>
+    </Routes>
+    </AuthProvider>
+   </main>
   );
 }
 

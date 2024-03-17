@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/AuthProvider";
 
-export const LoginForm = ({ login, setShowRegisterPage, error, setError }) => {
+export const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+  const { login, user, error, setError } = useUser();
+
+  useEffect(()=>{
+    if(user){
+      navigate("/students")
+    }
+  },[user]) //check if user is truthy when the user's state changes
+
   const handleLogin = (e) => {
     e.preventDefault();
-
+    console.log(username, password);
     login(username, password);
   };
   return (
@@ -17,6 +28,7 @@ export const LoginForm = ({ login, setShowRegisterPage, error, setError }) => {
         <div className="login-form">
           <label htmlFor="username">Username</label>
           <input
+          required="required"
             type="text"
             id="username"
             value={username}
@@ -24,6 +36,7 @@ export const LoginForm = ({ login, setShowRegisterPage, error, setError }) => {
           ></input>
           <label htmlFor="password">Password</label>
           <input
+          required="required"
             type="password"
             id="password"
             value={password}
@@ -39,7 +52,7 @@ export const LoginForm = ({ login, setShowRegisterPage, error, setError }) => {
         className="go-to-sign"
         onClick={() => {
           setError("");
-          setShowRegisterPage(true);
+          navigate("/register");
         }}
       >
         Sign Up

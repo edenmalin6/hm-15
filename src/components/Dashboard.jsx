@@ -4,7 +4,6 @@ import ReadOnlyRow from "./ReadOnlyRow";
 import { EditRow } from "./EditRow";
 import { Admin } from "./Admin";
 import { storageService } from "../services/storageService";
-import { Footer } from "./Footer";
 
 export const Table = ({ students, setStudents }) => {
   const [editId, setEditId] = useState(null);

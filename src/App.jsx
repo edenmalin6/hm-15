@@ -10,9 +10,9 @@ function App() {
  
   return (
    <main>
-    <AuthProvider >
+    <AuthProvider>
     <Routes>
-      <Route path="/" element={<Navigate to="/login"/>}/>
+      <Route path="/" element={<HomePage/>}/>
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/register" element={<RegisterPage/>}/>
       <Route path="/students" element={<StudentsPage/>}/> 
